@@ -3,9 +3,12 @@ import streamlit as st
 
 import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-df_a = pd.read_json(os.path.join(BASE_DIR, 'heart_failure_a.json'))
-df_b = pd.read_json(os.path.join(BASE_DIR, 'heart_failure_b.json'))
+from pathlib import Path
+
+BASE_DIR = Path(".")   # ⭐ 핵심
+
+df_a = pd.read_json(BASE_DIR / "heart_failure_a.json")
+df_b = pd.read_json(BASE_DIR / "heart_failure_b.json")
 
 
 df = pd.merge(df_a, df_b, on='person_id', how='inner')
