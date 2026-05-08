@@ -1,12 +1,12 @@
 import pandas as pd
 import streamlit as st
 
+import os
 
-FILE_PATH_A = '../[3]시각화/data/heart_failure_a.json'
-FILE_PATH_B = '../[3]시각화/data/heart_failure_b.json'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+df_a = pd.read_json(os.path.join(BASE_DIR, 'heart_failure_a.json'))
+df_b = pd.read_json(os.path.join(BASE_DIR, 'heart_failure_b.json'))
 
-df_a = pd.read_json(FILE_PATH_A)
-df_b = pd.read_json(FILE_PATH_B)
 
 df = pd.merge(df_a, df_b, on='person_id', how='inner')
 
